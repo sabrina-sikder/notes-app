@@ -69,10 +69,6 @@ function renderNote(array){
   }
  
   }
-
-
-  
-
   
   function handleKey(event){
     if(event.key==='Enter'){
