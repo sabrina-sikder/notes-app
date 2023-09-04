@@ -7,8 +7,6 @@ export default function Note(props){
     const [note,setNote]=useState({id:"",
                                   body:"",
                                    isSelected : false})
-                                  
-    
     return (
         <div className={props.darkMode?"card dark-grey":"card"}>
             <button onClick={()=>props.handleCheckbox(props.id)} className={props.isSelected? "checkbox-btn selected":"checkbox-btn"} ></button>
