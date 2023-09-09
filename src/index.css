@@ -23,6 +23,7 @@ body {
   padding: 2em;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .dark-header {
@@ -105,7 +106,7 @@ button {
   min-height: 100vh;
 }
 
-.dark-grey {
+.dark {
   background-color: hsl(237, 14%, 26%);
   color: hsl(0, 0%, 98%);
 }
@@ -125,6 +126,7 @@ button {
   cursor: pointer;
   margin-right: 0;
   margin-left: auto;
+  filter: invert(97%) sepia(3%) saturate(12%) hue-rotate(118deg) brightness(104%) contrast(104%);
 }
 
 .filter-bar {
@@ -134,9 +136,10 @@ button {
   padding: 1em;
 }
 
-.dark {
-  background-color: hsl(237, 14%, 26%);
+.notes-filter-bar {
+  margin-top:4em;
 }
+
 
 @media (min-width: 768px) {
   .light-header {

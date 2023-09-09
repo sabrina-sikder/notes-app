@@ -8,7 +8,7 @@ import FilterBar from './FilterBar';
 
 function App() {
   
-  const [notesArray, setNotesArray] = useState(JSON.parse(localStorage.getItem("notes")) || [])
+  const [notesArray, setNotesArray] = useState(() => JSON.parse(localStorage.getItem("notes")) || [])
   const [filter,setFilter] = useState('all')
   const [darkMode,setDarkMode] = useState(true)
 
@@ -33,7 +33,6 @@ function App() {
     setNotesArray(prevNotesArray=> 
       prevNotesArray.filter(note => !note.isSelected))
   }
-
 
 
   function handleCheckbox(id){
@@ -69,10 +68,6 @@ function renderNote(array){
   }
  
   }
-
-
-  
-
   
   function handleKey(event){
     if(event.key==='Enter'){
@@ -86,34 +81,35 @@ function renderNote(array){
   }
 
   function addNote(){
+    const inputEl = document.getElementById('note-input')
     const newNote ={
       id:uuidv4(),
-      body:document.getElementById('note-input').value,
+      body:inputEl.value,
       isSelected:false
     }
 
     setNotesArray(prevNotesArray =>  
       [newNote,...prevNotesArray]
     )
-    document.getElementById('note-input').value=""
+    inputEl.value=""
   }
 
   return (
   <div>
-    <div className={darkMode?"dark-header header":"header light-header"}>
+    <div className={darkMode?"dark-header header":"light-header header"}>
     <h1>TODO</h1>
     <button className="toggle-btn" onClick={toggleDarkMode}><img src={darkMode?sun:moon}></img></button>
   </div>
 
   <div className={darkMode?"dark-container container":"container"}>
       <input id='note-input' onKeyDown={handleKey} 
-      className={darkMode?"dark-grey card":"card"} type="text" name='inputField' 
+      className={darkMode?"dark card":"card"} type="text" name='inputField' 
       placeholder="Create a new todo..." ></input>
         
       {notesArray.length>0
             &&
         
-      <div className={darkMode?"dark-grey notes-container":"notes-container"}>
+      <div className={darkMode?"dark notes-container":"notes-container"}>
         {filter==='all'?renderNote(notesArray)
           :filter==="completed"?renderNote(getCompletedNotes())
           :renderNote(getActiveNotes())}
@@ -122,7 +118,7 @@ function renderNote(array){
           <span>{`${getActiveNotes().length} items left`}</span>
           <button onClick={clearCompletedNotes} className="clear-btn">clear completed</button>
         </div>
-          <FilterBar all={setAll} active={setActive} completed={setCompleted} darkMode={darkMode} />
+        <FilterBar all={setAll} active={setActive} completed={setCompleted} darkMode={darkMode} />   
       </div>
       }
     </div> 

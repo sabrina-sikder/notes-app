@@ -8,7 +8,7 @@ export default function Note(props){
                                   body:"",
                                    isSelected : false})
     return (
-        <div className={props.darkMode?"card dark-grey":"card"}>
+        <div className={props.darkMode?"dark card":"card"}>
             <button onClick={()=>props.handleCheckbox(props.id)} className={props.isSelected? "checkbox-btn selected":"checkbox-btn"} ></button>
             
            <p className={props.isSelected? "note-body-selected":""}>{props.body}</p> 
